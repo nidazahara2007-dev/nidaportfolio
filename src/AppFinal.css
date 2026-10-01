@@ -1,0 +1,1074 @@
+/* =========================================================
+   04 — PROOF / CINEMATIC MOTION
+   ========================================================= */
+
+.proof-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle scanning atmosphere */
+
+.proof-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(201, 255, 40, 0.035) 50%,
+      transparent 100%
+    );
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.proof-section:has(.proof-item.is-visible)::before {
+  animation: proofScan 1.8s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes proofScan {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* heading */
+
+.proof-heading {
+  position: relative;
+  z-index: 1;
+}
+
+.proof-heading .section-index {
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+/* proof cards */
+
+.proof-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.proof-item {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform:
+    translateY(45px)
+    scale(0.97);
+  transition:
+    opacity 0.9s cubic-bezier(.16, 1, .3, 1),
+    transform 0.9s cubic-bezier(.16, 1, .3, 1),
+    background 0.4s ease;
+}
+
+.proof-item.is-visible {
+  opacity: 1;
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+/* stagger */
+
+.proof-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.proof-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.proof-item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+.proof-item:nth-child(4) {
+  transition-delay: 0.35s;
+}
+
+/* animated edge */
+
+.proof-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--lime);
+  transition:
+    width 0.7s cubic-bezier(.16, 1, .3, 1);
+}
+
+.proof-item:hover::after {
+  width: 100%;
+}
+
+/* number */
+
+.proof-item strong {
+  position: relative;
+  display: block;
+  transform: translateY(18px);
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.proof-item.is-visible strong {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* number glow only on hover */
+
+.proof-item:hover strong {
+  text-shadow:
+    0 0 24px rgba(201, 255, 40, 0.18);
+}
+
+/* label */
+
+.proof-item span,
+.proof-item p {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(.16, 1, .3, 1);
+}
+
+.proof-item.is-visible span,
+.proof-item.is-visible p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proof-item.is-visible span {
+  transition-delay: 0.18s;
+}
+
+.proof-item.is-visible p {
+  transition-delay: 0.28s;
+}
+
+
+/* =========================================================
+   05 — PROCESS / BUILD FLOW
+   ========================================================= */
+
+.process-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* vertical cinematic line */
+
+.process-list {
+  position: relative;
+}
+
+.process-list::before {
+  content: "";
+  position: absolute;
+  left: 39px;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      var(--lime),
+      rgba(201, 255, 40, 0)
+    );
+  transition:
+    height 1.8s cubic-bezier(.16, 1, .3, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.process-list:has(.process-row.is-visible)::before {
+  height: 100%;
+}
+
+/* rows */
+
+.process-row {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-45px);
+  transition:
+    opacity 0.85s cubic-bezier(.16, 1, .3, 1),
+    transform 0.85s cubic-bezier(.16, 1, .3, 1),
+    padding 0.3s ease,
+    background 0.3s ease;
+}
+
+.process-row.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* staggered build sequence */
+
+.process-row:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.process-row:nth-child(2) {
+  transition-delay: 0.18s;
+}
+
+.process-row:nth-child(3) {
+  transition-delay: 0.31s;
+}
+
+.process-row:nth-child(4) {
+  transition-delay: 0.44s;
+}
+
+/* number activation */
+
+.process-row > span {
+  position: relative;
+  z-index: 3;
+  transition:
+    transform 0.6s cubic-bezier(.16, 1, .3, 1),
+    text-shadow 0.4s ease;
+}
+
+.process-row.is-visible > span {
+  animation: processNumberIn 0.8s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes processNumberIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* title enters slightly after number */
+
+.process-row h3 {
+  opacity: 0;
+  transform: translateX(-25px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.process-row.is-visible h3 {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.12s;
+}
+
+/* description */
+
+.process-row p {
+  opacity: 0;
+  transform: translateX(-15px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.process-row.is-visible p {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.22s;
+}
+
+/* arrow */
+
+.process-row b {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s cubic-bezier(.16, 1, .3, 1);
+}
+
+.process-row.is-visible b {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.32s;
+}
+
+/* hover = active build step */
+
+.process-row:hover {
+  position: relative;
+  z-index: 4;
+}
+
+.process-row:hover > span {
+  text-shadow:
+    0 0 18px rgba(201, 255, 40, 0.35);
+}
+
+.process-row:hover h3 {
+  transform: translateX(8px);
+}
+
+.process-row:hover b {
+  transform: translateX(7px);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-item,
+  .process-row,
+  .proof-item strong,
+  .proof-item span,
+  .proof-item p,
+  .process-row h3,
+  .process-row p,
+  .process-row b {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  .process-list::before {
+    height: 100%;
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .process-list::before {
+    left: 24px;
+  }
+
+  .proof-item {
+    transform: translateY(30px) scale(0.98);
+  }
+
+  .process-row {
+    transform: translateX(-25px);
+  }
+}
+
+/* =========================================================
+   SIGNAL LOST — TRANSMISSION EXPERIENCE
+   ========================================================= */
+
+.signal-nav-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.72;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.signal-nav-trigger:hover {
+  opacity: 1;
+  transform: translateX(6px);
+}
+
+.signal-nav-index {
+  color: var(--lime);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================================================
+   FULL SCREEN SIGNAL
+   ========================================================= */
+
+.signal-page {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  background: #030403;
+  color: var(--white);
+  isolation: isolate;
+  animation: signalBoot 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+@keyframes signalBoot {
+  0% {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   ATMOSPHERE
+   ========================================================= */
+
+.signal-noise {
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  opacity: 0.055;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(255,255,255,.8) 0,
+      rgba(255,255,255,.8) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  animation: signalNoise 0.18s steps(2) infinite;
+}
+
+@keyframes signalNoise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(2%, -1%);
+  }
+
+  50% {
+    transform: translate(-1%, 2%);
+  }
+
+  75% {
+    transform: translate(-2%, -1%);
+  }
+
+  100% {
+    transform: translate(1%, 1%);
+  }
+}
+
+
+.signal-scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.12;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(255,255,255,.035) 4px
+    );
+}
+
+
+.signal-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.16;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(201,255,40,.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(201,255,40,.04) 1px,
+      transparent 1px
+    );
+  background-size: 80px 80px;
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black,
+      transparent 75%
+    );
+}
+
+
+/* =========================================================
+   CORNERS
+   ========================================================= */
+
+.signal-corner {
+  position: absolute;
+  z-index: 10;
+  color: #555;
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.signal-corner-tl {
+  top: 25px;
+  left: 30px;
+}
+
+.signal-corner-tr {
+  top: 25px;
+  right: 30px;
+}
+
+.signal-corner-bl {
+  bottom: 25px;
+  left: 30px;
+}
+
+.signal-corner-br {
+  right: 30px;
+  bottom: 25px;
+}
+
+
+/* =========================================================
+   TOP DATA
+   ========================================================= */
+
+.signal-top {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  gap: 35px;
+  transform: translateX(-50%);
+  color: #666;
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   RADAR
+   ========================================================= */
+
+.signal-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.signal-radar {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 35px;
+}
+
+
+.signal-radar-ring {
+  position: absolute;
+  inset: 50%;
+  border: 1px solid rgba(201,255,40,.18);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.ring-one {
+  width: 80px;
+  height: 80px;
+}
+
+.ring-two {
+  width: 160px;
+  height: 160px;
+}
+
+.ring-three {
+  width: 245px;
+  height: 245px;
+}
+
+
+.signal-radar-cross {
+  position: absolute;
+  background: rgba(201,255,40,.12);
+}
+
+
+.signal-radar-cross.horizontal {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+
+.signal-radar-cross.vertical {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+}
+
+
+.signal-radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 115px;
+  height: 1px;
+  transform-origin: left center;
+  background:
+    linear-gradient(
+      90deg,
+      var(--lime),
+      transparent
+    );
+  box-shadow:
+    0 0 12px rgba(201,255,40,.35);
+  animation: radarSweep 3s linear infinite;
+}
+
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.signal-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow:
+    0 0 10px var(--lime),
+    0 0 30px rgba(201,255,40,.35);
+  animation: corePulse 1.5s ease-in-out infinite;
+}
+
+
+.signal-core span {
+  position: absolute;
+  inset: -8px;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  animation: coreRing 1.5s ease-out infinite;
+}
+
+
+@keyframes corePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(.8);
+    opacity: .65;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+  }
+}
+
+
+@keyframes coreRing {
+  0% {
+    transform: scale(.4);
+    opacity: .8;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   SIGNAL PACKETS
+   ========================================================= */
+
+.signal-packet {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 12px rgba(201,255,40,.8);
+}
+
+
+.packet-one {
+  top: 28%;
+  left: 69%;
+  animation: packetOne 2.8s ease-in-out infinite;
+}
+
+.packet-two {
+  top: 70%;
+  left: 25%;
+  animation: packetTwo 3.5s ease-in-out infinite;
+}
+
+.packet-three {
+  top: 22%;
+  left: 32%;
+  animation: packetThree 2.2s ease-in-out infinite;
+}
+
+
+@keyframes packetOne {
+  0%, 100% {
+    opacity: .1;
+    transform: scale(.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.7);
+  }
+}
+
+
+@keyframes packetTwo {
+  0%, 100% {
+    opacity: .15;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(18px, -14px);
+  }
+}
+
+
+@keyframes packetThree {
+  0%, 100% {
+    opacity: .15;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.signal-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+  color: var(--lime);
+  font-size: 8px;
+  letter-spacing: .22em;
+  animation: signalFadeUp .8s .25s both;
+}
+
+
+.signal-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+  animation: statusBlink 1s steps(2) infinite;
+}
+
+
+@keyframes statusBlink {
+  50% {
+    opacity: .2;
+  }
+}
+
+
+.signal-title {
+  margin: 0;
+  font-size: clamp(70px, 12vw, 170px);
+  font-weight: 400;
+  line-height: .78;
+  letter-spacing: -.075em;
+  animation: signalTitle .9s .1s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+
+.signal-title span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.75);
+}
+
+
+@keyframes signalTitle {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    letter-spacing: -.02em;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -.075em;
+  }
+}
+
+
+.signal-subtitle {
+  margin: 28px 0 22px;
+  color: #666;
+  font-size: 9px;
+  line-height: 1.8;
+  letter-spacing: .16em;
+  animation: signalFadeUp .8s .45s both;
+}
+
+
+.signal-data {
+  display: flex;
+  gap: 25px;
+  color: #444;
+  font-size: 7px;
+  letter-spacing: .15em;
+  animation: signalFadeUp .8s .55s both;
+}
+
+
+@keyframes signalFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   RESTORE BUTTON
+   ========================================================= */
+
+.signal-restore {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 35px;
+  padding: 13px 18px;
+  border: 1px solid rgba(201,255,40,.45);
+  background: transparent;
+  color: var(--lime);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 8px;
+  letter-spacing: .16em;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease;
+  animation: signalFadeUp .8s .7s both;
+}
+
+
+.signal-restore b {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+
+.signal-restore:hover {
+  background: var(--lime);
+  color: #030403;
+  box-shadow:
+    0 0 35px rgba(201,255,40,.18);
+  transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   TRANSMISSION
+   ========================================================= */
+
+.signal-transmission {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 180px;
+  color: #444;
+  font-size: 6px;
+  letter-spacing: .18em;
+}
+
+
+.transmission-line {
+  position: relative;
+  height: 1px;
+  margin-top: 8px;
+  overflow: hidden;
+  background: #222;
+}
+
+
+.transmission-line i {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+  animation: transmissionMove 1.5s linear infinite;
+}
+
+
+@keyframes transmissionMove {
+  from {
+    left: -30%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .signal-top {
+    display: none;
+  }
+
+  .signal-corner {
+    font-size: 6px;
+  }
+
+  .signal-corner-tl {
+    top: 18px;
+    left: 18px;
+  }
+
+  .signal-corner-tr {
+    top: 18px;
+    right: 18px;
+  }
+
+  .signal-corner-bl {
+    bottom: 18px;
+    left: 18px;
+  }
+
+  .signal-corner-br {
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .signal-radar {
+    width: 190px;
+    height: 190px;
+    margin-bottom: 25px;
+  }
+
+  .ring-three {
+    width: 185px;
+    height: 185px;
+  }
+
+  .ring-two {
+    width: 125px;
+    height: 125px;
+  }
+
+  .ring-one {
+    width: 65px;
+    height: 65px;
+  }
+
+  .signal-title {
+    font-size: 70px;
+  }
+
+  .signal-subtitle {
+    padding: 0 25px;
+    font-size: 7px;
+  }
+
+  .signal-data {
+    gap: 10px;
+    font-size: 5px;
+  }
+
+  .signal-transmission {
+    right: 18px;
+    bottom: 18px;
+  }
+}
